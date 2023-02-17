@@ -57,5 +57,12 @@ public class UsuarioService {
         List<UsuarioModel> result = query.getResultList();
         return result.stream().map(UsuarioTodosDadosDTO::new).collect(Collectors.toList());
     }
-    
+
+    public List<UsuarioTodosDadosDTO> listarComInicial(String letra){
+        Query query = usuarioDAO.createNativeQuery("SELECT * FROM tb_usuario WHERE nome LIKE ?");
+        query.setParameter(1, letra + "%");
+        List<UsuarioModel> result = query.getResultList();
+        return result.stream().map(UsuarioTodosDadosDTO::new).collect(Collectors.toList());
+    }
+
 }
