@@ -1,62 +1,54 @@
-package com.stefanini.usuario.model;
+package com.stefanini.usuario.dto;
 
-import com.stefanini.usuario.dto.UsuarioTodosDadosDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stefanini.usuario.model.UsuarioModel;
 
-import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "tb_usuario")
-public class UsuarioModel {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UsuarioTodosDadosDTO {
     private Long idUsuario;
 
-    @Column(name = "nome_usuario")
-    @NotNull(message = "campo nome é obrigatorio")
+    @NotEmpty(message = "Nome não pode ser nulo")
     @Size(max = 50)
     private String nomeUsuario;
 
-    @Column(name= "login_usuario", unique = true)
-    @NotNull
+    @NotEmpty(message = "Login não pode ser nulo")
+    @Size(min = 5, max = 20)
     private String loginUsuario;
 
-    @Column(name= "email_usuario", unique = true)
+    @NotEmpty(message = "Email não pode ser nulo")
+    @Size(max = 50)
     @Email
-    @Size(min = 10)
     private String emailUsuario;
 
-    @Column(name = "senha_usuario")
-    @NotNull
+    @NotEmpty(message = "Senha não pode ser nula")
+    @Size(min = 0, max = 10)
     private String senhaUsuario;
 
-    @Column(name = "data_nascimento_usuario")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNascimentoUsuario;
 
-    @Column(name = "data_criacao_usuario", updatable = false)
-    @NotNull
-    private LocalDateTime dataCriancaoUsuario;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime dataCriacaoUsuario;
 
-    @Column(name = "data_atualizacao_usuario")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dataAtualizacaoUsuario;
 
-    public UsuarioModel(){
+    public UsuarioTodosDadosDTO() {
     }
 
-    public UsuarioModel(UsuarioTodosDadosDTO usuarioTodosDadosDTO){
-        this.idUsuario = usuarioTodosDadosDTO.getIdUsuario();
-        this.nomeUsuario = usuarioTodosDadosDTO.getNomeUsuario();
-        this.loginUsuario = usuarioTodosDadosDTO.getLoginUsuario();
-        this.emailUsuario = usuarioTodosDadosDTO.getEmailUsuario();
-        this.senhaUsuario = usuarioTodosDadosDTO.getSenhaUsuario();
-        this.dataNascimentoUsuario = usuarioTodosDadosDTO.getDataNascimentoUsuario();
-        this.dataCriancaoUsuario = usuarioTodosDadosDTO.getDataCriacaoUsuario();
-        this.dataAtualizacaoUsuario = usuarioTodosDadosDTO.getDataAtualizacaoUsuario();
+    public UsuarioTodosDadosDTO(UsuarioModel usuarioModel){
+        this.idUsuario = usuarioModel.getIdUsuario();
+        this.nomeUsuario = usuarioModel.getNomeUsuario();
+        this.loginUsuario = usuarioModel.getLoginUsuario();
+        this.senhaUsuario = usuarioModel.getSenhaUsuario();
+        this.dataNascimentoUsuario = usuarioModel.getDataNascimentoUsuario();
+        this.dataCriacaoUsuario = usuarioModel.getDataCriancaoUsuario();
+        this.dataAtualizacaoUsuario = usuarioModel.getDataAtualizacaoUsuario();
     }
 
     public Long getIdUsuario() {
@@ -107,12 +99,12 @@ public class UsuarioModel {
         this.dataNascimentoUsuario = dataNascimentoUsuario;
     }
 
-    public LocalDateTime getDataCriancaoUsuario() {
-        return dataCriancaoUsuario;
+    public LocalDateTime getDataCriacaoUsuario() {
+        return dataCriacaoUsuario;
     }
 
-    public void setDataCriancaoUsuario(LocalDateTime dataCriancaoUsuario) {
-        this.dataCriancaoUsuario = dataCriancaoUsuario;
+    public void setDataCriacaoUsuario(LocalDateTime dataCriacaoUsuario) {
+        this.dataCriacaoUsuario = dataCriacaoUsuario;
     }
 
     public LocalDateTime getDataAtualizacaoUsuario() {
