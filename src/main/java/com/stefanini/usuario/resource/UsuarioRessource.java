@@ -15,4 +15,10 @@ public class UsuarioRessource {
     @Inject
     private UsuarioService usuarioService;
 
+    @GET
+    @Path("/{id}")
+    public Response findById(@PathParam("id") Long id) {
+        return Response.ok(usuarioService.findById(id)).build();
+    }
+    
 }
