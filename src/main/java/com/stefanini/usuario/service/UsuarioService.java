@@ -8,6 +8,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,6 +30,7 @@ public class UsuarioService {
     @Transactional
     public UsuarioModel save(UsuarioTodosDadosDTO usuarioTodosDadosDTO){
         UsuarioModel usuarioModel = new UsuarioModel(usuarioTodosDadosDTO);
+        usuarioModel.setDataCriancaoUsuario(LocalDateTime.now());
         usuarioDAO.save(usuarioModel);
         return usuarioModel;
     }
