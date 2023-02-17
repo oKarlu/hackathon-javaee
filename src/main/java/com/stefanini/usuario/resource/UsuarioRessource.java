@@ -20,5 +20,10 @@ public class UsuarioRessource {
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(usuarioService.findById(id)).build();
     }
-    
+
+    @GET
+    @Path("/ListarTodos")
+    public Response listAll(){
+        return Response.ok(usuarioService.listAll()).build();
+    }
 }
