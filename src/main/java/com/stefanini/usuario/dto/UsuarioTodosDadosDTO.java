@@ -26,7 +26,7 @@ public class UsuarioTodosDadosDTO {
     private String emailUsuario;
 
     @NotEmpty(message = "Senha não pode ser nula")
-    @Size(min = 0, max = 10)
+    @Size(min = 4, max = 10)
     private String senhaUsuario;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
