@@ -6,7 +6,9 @@ import com.stefanini.usuario.model.UsuarioModel;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,4 +50,12 @@ public class UsuarioService {
         UsuarioModel usuarioModel = usuarioDAO.findById(id);
         usuarioDAO.delete(usuarioModel.getIdUsuario());
     }
+
+    public List<UsuarioTodosDadosDTO> listarAniversariantes(Integer mes){
+        Query query = usuarioDAO.createNativeQuery("SELECT * FROM tb_usuario WHERE month(data_nascimento_usuario) = ?");
+        query.setParameter(1, mes);
+        List<UsuarioModel> result = query.getResultList();
+        return result.stream().map(UsuarioTodosDadosDTO::new).collect(Collectors.toList());
+    }
+    
 }
