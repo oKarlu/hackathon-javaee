@@ -65,4 +65,10 @@ public class UsuarioService {
         return result.stream().map(UsuarioTodosDadosDTO::new).collect(Collectors.toList());
     }
 
+    public List<UsuarioTodosDadosDTO> listarProvedoresDeEmail(){
+        Query query = usuarioDAO.createNativeQuery("SELECT * FROM tb_usuario WHERE email LIKE @%");
+        HashSet<UsuarioModel> result = (HashSet<UsuarioModel>) query.getResultList();
+        return result.stream().map(UsuarioTodosDadosDTO::new).collect(Collectors.toList());
+    }
+
 }
