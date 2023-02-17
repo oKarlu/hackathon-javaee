@@ -43,6 +43,7 @@ public class UsuarioService {
     @Transactional
     public UsuarioTodosDadosDTO update(UsuarioTodosDadosDTO usuarioTodosDadosDTO){
         UsuarioModel usuarioModel = new UsuarioModel(usuarioTodosDadosDTO);
+        usuarioModel.setDataAtualizacaoUsuario(LocalDateTime.now());
         usuarioDAO.update(usuarioModel);
         return new UsuarioTodosDadosDTO(usuarioModel);
     }
