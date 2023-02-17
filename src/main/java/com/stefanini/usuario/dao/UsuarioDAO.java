@@ -7,5 +7,5 @@ import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class UsuarioDAO extends GenericDAO<UsuarioModel, Long> {
-    
+
 }
