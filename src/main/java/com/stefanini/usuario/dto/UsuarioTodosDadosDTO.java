@@ -26,7 +26,7 @@ public class UsuarioTodosDadosDTO {
     private String emailUsuario;
 
     @NotEmpty(message = "Senha não pode ser nula")
-    @Size(min = 4, max = 10)
+    @Size(min = 4, max = 10, message = "Senha não pode ser menor que 4 ou maior que 10")
     private String senhaUsuario;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -45,6 +45,7 @@ public class UsuarioTodosDadosDTO {
         this.idUsuario = usuarioModel.getIdUsuario();
         this.nomeUsuario = usuarioModel.getNomeUsuario();
         this.loginUsuario = usuarioModel.getLoginUsuario();
+        this.emailUsuario = usuarioModel.getEmailUsuario();
         this.senhaUsuario = usuarioModel.getSenhaUsuario();
         this.dataNascimentoUsuario = usuarioModel.getDataNascimentoUsuario();
         this.dataCriacaoUsuario = usuarioModel.getDataCriancaoUsuario();

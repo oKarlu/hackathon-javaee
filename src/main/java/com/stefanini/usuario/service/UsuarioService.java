@@ -1,15 +1,14 @@
 package com.stefanini.usuario.service;
 
 import com.stefanini.usuario.dao.UsuarioDAO;
+import com.stefanini.usuario.dto.CorpoRespostaAniversariantesDTO;
 import com.stefanini.usuario.dto.UsuarioTodosDadosDTO;
 import com.stefanini.usuario.model.UsuarioModel;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,24 +53,16 @@ public class UsuarioService {
         usuarioDAO.delete(usuarioModel.getIdUsuario());
     }
 
-    public List<UsuarioTodosDadosDTO> listarAniversariantes(Integer mes){
-        Query query = usuarioDAO.createNativeQuery("SELECT * FROM tb_usuario WHERE month(data_nascimento_usuario) = ?");
-        query.setParameter(1, mes);
-        List<UsuarioModel> result = query.getResultList();
-        return result.stream().map(UsuarioTodosDadosDTO::new).collect(Collectors.toList());
+    public List<CorpoRespostaAniversariantesDTO> listarAniversariantesPorMes(Integer mes){
+        return usuarioDAO.listarAniversariantesPorMes(mes);
     }
 
-    public List<UsuarioTodosDadosDTO> listarComInicial(String letra){
-        Query query = usuarioDAO.createNativeQuery("SELECT * FROM tb_usuario WHERE nome LIKE ?");
-        query.setParameter(1, letra + "%");
-        List<UsuarioModel> result = query.getResultList();
-        return result.stream().map(UsuarioTodosDadosDTO::new).collect(Collectors.toList());
+    public List<UsuarioTodosDadosDTO> listarPorInicial(String letra){
+        return usuarioDAO.listarPorInicial(letra);
     }
 
     public List<UsuarioTodosDadosDTO> listarProvedoresDeEmail(){
-        Query query = usuarioDAO.createNativeQuery("SELECT * FROM tb_usuario WHERE email LIKE @%");
-        HashSet<UsuarioModel> result = (HashSet<UsuarioModel>) query.getResultList();
-        return result.stream().map(UsuarioTodosDadosDTO::new).collect(Collectors.toList());
+        return usuarioDAO.listarProvedoresDeEmail();
     }
 
 }
