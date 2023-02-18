@@ -33,7 +33,7 @@ public class PersistirUsuarioDTO {
     public PersistirUsuarioDTO() {
     }
 
-    public PersistirUsuarioDTO(UsuarioModel usuarioModel){
+    public PersistirUsuarioDTO(UsuarioModel usuarioModel) {
         this.nomeUsuario = usuarioModel.getNomeUsuario();
         this.loginUsuario = usuarioModel.getLoginUsuario();
         this.emailUsuario = usuarioModel.getEmailUsuario();

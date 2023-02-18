@@ -39,7 +39,7 @@ public class AtualizarUsuarioDTO {
     public AtualizarUsuarioDTO() {
     }
 
-    public AtualizarUsuarioDTO(UsuarioModel usuarioModel){
+    public AtualizarUsuarioDTO(UsuarioModel usuarioModel) {
         this.idUsuario = usuarioModel.getIdUsuario();
         this.nomeUsuario = usuarioModel.getNomeUsuario();
         this.loginUsuario = usuarioModel.getLoginUsuario();

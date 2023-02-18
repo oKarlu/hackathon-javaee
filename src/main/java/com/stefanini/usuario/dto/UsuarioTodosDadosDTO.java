@@ -41,7 +41,7 @@ public class UsuarioTodosDadosDTO {
     public UsuarioTodosDadosDTO() {
     }
 
-    public UsuarioTodosDadosDTO(UsuarioModel usuarioModel){
+    public UsuarioTodosDadosDTO(UsuarioModel usuarioModel) {
         this.idUsuario = usuarioModel.getIdUsuario();
         this.nomeUsuario = usuarioModel.getNomeUsuario();
         this.loginUsuario = usuarioModel.getLoginUsuario();

@@ -31,7 +31,7 @@ public class UsuarioDAO extends GenericDAO<UsuarioModel, Long> {
     }
 
     public List<UsuarioTodosDadosDTO> listarProvedoresDeEmail(){
-        Query query = createNativeQuery("SELECT * FROM tb_usuario WHERE email_usuario LIKE @%");
+        Query query = createNativeQuery("");
         HashSet<UsuarioModel> result = (HashSet<UsuarioModel>) query.getResultList();
         return result.stream().map(UsuarioTodosDadosDTO::new).collect(Collectors.toList());
     }

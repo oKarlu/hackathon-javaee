@@ -5,9 +5,6 @@ import com.stefanini.usuario.dto.PersistirUsuarioDTO;
 import com.stefanini.usuario.dto.UsuarioTodosDadosDTO;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -22,10 +19,10 @@ public class UsuarioModel {
     @Column(name = "nome_usuario")
     private String nomeUsuario;
 
-    @Column(name= "login_usuario", unique = true)
+    @Column(name = "login_usuario", unique = true)
     private String loginUsuario;
 
-    @Column(name= "email_usuario", unique = true)
+    @Column(name = "email_usuario", unique = true)
     private String emailUsuario;
 
     @Column(name = "senha_usuario")
@@ -40,10 +37,10 @@ public class UsuarioModel {
     @Column(name = "data_atualizacao_usuario")
     private LocalDateTime dataAtualizacaoUsuario;
 
-    public UsuarioModel(){
+    public UsuarioModel() {
     }
 
-    public UsuarioModel(UsuarioTodosDadosDTO usuarioTodosDadosDTO){
+    public UsuarioModel(UsuarioTodosDadosDTO usuarioTodosDadosDTO) {
         this.idUsuario = usuarioTodosDadosDTO.getIdUsuario();
         this.nomeUsuario = usuarioTodosDadosDTO.getNomeUsuario();
         this.loginUsuario = usuarioTodosDadosDTO.getLoginUsuario();
@@ -54,7 +51,7 @@ public class UsuarioModel {
         this.dataAtualizacaoUsuario = usuarioTodosDadosDTO.getDataAtualizacaoUsuario();
     }
 
-    public UsuarioModel(PersistirUsuarioDTO persistirUsuarioDTO){
+    public UsuarioModel(PersistirUsuarioDTO persistirUsuarioDTO) {
         this.nomeUsuario = persistirUsuarioDTO.getNomeUsuario();
         this.loginUsuario = persistirUsuarioDTO.getLoginUsuario();
         this.emailUsuario = persistirUsuarioDTO.getEmailUsuario();
@@ -62,7 +59,7 @@ public class UsuarioModel {
         this.dataNascimentoUsuario = persistirUsuarioDTO.getDataNascimentoUsuario();
     }
 
-    public UsuarioModel(AtualizarUsuarioDTO atualizarUsuarioDTO){
+    public UsuarioModel(AtualizarUsuarioDTO atualizarUsuarioDTO) {
         this.idUsuario = atualizarUsuarioDTO.getIdUsuario();
         this.nomeUsuario = atualizarUsuarioDTO.getNomeUsuario();
         this.loginUsuario = atualizarUsuarioDTO.getLoginUsuario();
