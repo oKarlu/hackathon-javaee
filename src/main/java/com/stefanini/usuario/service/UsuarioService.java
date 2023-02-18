@@ -2,6 +2,7 @@ package com.stefanini.usuario.service;
 
 import com.stefanini.usuario.dao.UsuarioDAO;
 import com.stefanini.usuario.dto.CorpoRespostaAniversariantesDTO;
+import com.stefanini.usuario.dto.PersistirUsuarioDTO;
 import com.stefanini.usuario.dto.UsuarioTodosDadosDTO;
 import com.stefanini.usuario.model.UsuarioModel;
 
@@ -27,8 +28,8 @@ public class UsuarioService {
     }
 
     @Transactional
-    public UsuarioModel save(UsuarioTodosDadosDTO usuarioTodosDadosDTO){
-        UsuarioModel usuarioModel = new UsuarioModel(usuarioTodosDadosDTO);
+    public UsuarioModel save(PersistirUsuarioDTO persistirUsuarioDTO){
+        UsuarioModel usuarioModel = new UsuarioModel(persistirUsuarioDTO);
         usuarioModel.setDataCriancaoUsuario(LocalDateTime.now());
         usuarioDAO.save(usuarioModel);
         return usuarioModel;
@@ -40,11 +41,11 @@ public class UsuarioService {
     }
 
     @Transactional
-    public UsuarioTodosDadosDTO update(UsuarioTodosDadosDTO usuarioTodosDadosDTO){
-        UsuarioModel usuarioModel = new UsuarioModel(usuarioTodosDadosDTO);
+    public PersistirUsuarioDTO update(PersistirUsuarioDTO persistirUsuarioDTO){
+        UsuarioModel usuarioModel = new UsuarioModel(persistirUsuarioDTO);
         usuarioModel.setDataAtualizacaoUsuario(LocalDateTime.now());
         usuarioDAO.update(usuarioModel);
-        return new UsuarioTodosDadosDTO(usuarioModel);
+        return new PersistirUsuarioDTO(usuarioModel);
     }
 
     @Transactional

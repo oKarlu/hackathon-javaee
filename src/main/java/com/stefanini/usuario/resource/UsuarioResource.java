@@ -1,10 +1,12 @@
 package com.stefanini.usuario.resource;
 
+import com.stefanini.usuario.dto.PersistirUsuarioDTO;
 import com.stefanini.usuario.dto.UsuarioTodosDadosDTO;
 import com.stefanini.usuario.model.UsuarioModel;
 import com.stefanini.usuario.service.UsuarioService;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -42,9 +44,9 @@ public class UsuarioResource {
     }
 
     @POST
-    public Response save(UsuarioTodosDadosDTO usuarioTodosDadosDTO){
-        UsuarioModel usuarioModel = usuarioService.save(usuarioTodosDadosDTO);
-        if(Objects.nonNull(usuarioModel)) return Response.ok(usuarioTodosDadosDTO).build();
+    public Response save(@Valid PersistirUsuarioDTO persistirUsuarioDTO){
+        UsuarioModel usuarioModel = usuarioService.save(persistirUsuarioDTO);
+        if(Objects.nonNull(usuarioModel)) return Response.ok(persistirUsuarioDTO).build();
         return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao processar requisição").build();
     }
 

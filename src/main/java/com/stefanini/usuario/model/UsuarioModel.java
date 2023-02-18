@@ -1,5 +1,6 @@
 package com.stefanini.usuario.model;
 
+import com.stefanini.usuario.dto.PersistirUsuarioDTO;
 import com.stefanini.usuario.dto.UsuarioTodosDadosDTO;
 
 import javax.persistence.*;
@@ -57,6 +58,14 @@ public class UsuarioModel {
         this.dataNascimentoUsuario = usuarioTodosDadosDTO.getDataNascimentoUsuario();
         this.dataCriancaoUsuario = usuarioTodosDadosDTO.getDataCriacaoUsuario();
         this.dataAtualizacaoUsuario = usuarioTodosDadosDTO.getDataAtualizacaoUsuario();
+    }
+
+    public UsuarioModel(PersistirUsuarioDTO persistirUsuarioDTO){
+        this.nomeUsuario = persistirUsuarioDTO.getNomeUsuario();
+        this.loginUsuario = persistirUsuarioDTO.getLoginUsuario();
+        this.emailUsuario = persistirUsuarioDTO.getEmailUsuario();
+        this.senhaUsuario = persistirUsuarioDTO.getSenhaUsuario();
+        this.dataNascimentoUsuario = persistirUsuarioDTO.getDataNascimentoUsuario();
     }
 
     public Long getIdUsuario() {
