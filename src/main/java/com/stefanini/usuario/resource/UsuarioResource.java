@@ -1,12 +1,14 @@
 package com.stefanini.usuario.resource;
 
 import com.stefanini.usuario.dto.UsuarioTodosDadosDTO;
+import com.stefanini.usuario.model.UsuarioModel;
 import com.stefanini.usuario.service.UsuarioService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Objects;
 
 @Path("/usuarios")
 @Produces(MediaType.APPLICATION_JSON)
@@ -39,5 +41,11 @@ public class UsuarioResource {
         return Response.ok(usuarioService.listarPorInicial(inicial)).build();
     }
 
+    @POST
+    public Response save(UsuarioTodosDadosDTO usuarioTodosDadosDTO){
+        UsuarioModel usuarioModel = usuarioService.save(usuarioTodosDadosDTO);
+        if(Objects.nonNull(usuarioModel)) return Response.ok(usuarioTodosDadosDTO).build();
+        return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao processar requisição").build();
+    }
 
 }
