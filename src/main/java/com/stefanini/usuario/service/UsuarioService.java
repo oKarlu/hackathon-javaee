@@ -10,7 +10,9 @@ import com.stefanini.usuario.model.UsuarioModel;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +33,10 @@ public class UsuarioService {
     @Transactional
     public UsuarioModel save(PersistirUsuarioDTO persistirUsuarioDTO){
         UsuarioModel usuarioModel = new UsuarioModel(persistirUsuarioDTO);
+        String senha = Base64.getEncoder().encodeToString(persistirUsuarioDTO.getSenhaUsuario().getBytes());
         usuarioModel.setDataCriancaoUsuario(LocalDateTime.now());
+        //implementação de criptografia de senha do usuario
+        usuarioModel.setSenhaUsuario(senha);
         usuarioDAO.save(usuarioModel);
         return usuarioModel;
     }
