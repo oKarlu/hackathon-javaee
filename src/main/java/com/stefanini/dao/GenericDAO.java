@@ -29,7 +29,7 @@ public class GenericDAO<T, I>  {
         return em.find(clazz, id);
     }
 
-    public <T> List<T> listAll(){
+    public List<T> listAll(){
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<T> query = (CriteriaQuery<T>) builder.createQuery(clazz);
         query.from(clazz);
@@ -47,8 +47,12 @@ public class GenericDAO<T, I>  {
         em.remove(t);
     }
 
-    public <T> TypedQuery<T> createQuery(String query) {
-        return (TypedQuery<T>) em.createQuery(query, clazz);
+    public TypedQuery<T> createQuery(String query) {
+        return em.createQuery(query, clazz);
+    }
+
+    public TypedQuery<String> createQuery2(String query) {
+        return em.createQuery(query, String.class);
     }
 
     public Query createNativeQuery(String query) {
