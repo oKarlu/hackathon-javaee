@@ -53,7 +53,16 @@ public class UsuarioResource {
 
     @PUT
     public Response update(@Valid AtualizarUsuarioDTO atualizarUsuarioDTO){
-        return Response.status(Response.Status.OK).entity(usuarioService.update(atualizarUsuarioDTO)).build();
+        usuarioService.update(atualizarUsuarioDTO);
+        return Response.status(Response.Status.NO_CONTENT).build();
+        //return Response.status(Response.Status.OK).entity(usuarioService.update(atualizarUsuarioDTO)).build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public Response delete(@PathParam("id") Long id){
+        usuarioService.delete(id);
+        return Response.status(Response.Status.ACCEPTED).build();
     }
 
 }
