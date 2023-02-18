@@ -1,5 +1,6 @@
 package com.stefanini.usuario.resource;
 
+import com.stefanini.usuario.dto.AtualizarUsuarioDTO;
 import com.stefanini.usuario.dto.PersistirUsuarioDTO;
 import com.stefanini.usuario.dto.UsuarioTodosDadosDTO;
 import com.stefanini.usuario.model.UsuarioModel;
@@ -48,6 +49,11 @@ public class UsuarioResource {
         UsuarioModel usuarioModel = usuarioService.save(persistirUsuarioDTO);
         if(Objects.nonNull(usuarioModel)) return Response.ok(persistirUsuarioDTO).build();
         return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao processar requisição").build();
+    }
+
+    @PUT
+    public Response update(@Valid AtualizarUsuarioDTO atualizarUsuarioDTO){
+        return Response.status(Response.Status.OK).entity(usuarioService.update(atualizarUsuarioDTO)).build();
     }
 
 }

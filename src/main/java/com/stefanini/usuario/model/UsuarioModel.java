@@ -1,5 +1,6 @@
 package com.stefanini.usuario.model;
 
+import com.stefanini.usuario.dto.AtualizarUsuarioDTO;
 import com.stefanini.usuario.dto.PersistirUsuarioDTO;
 import com.stefanini.usuario.dto.UsuarioTodosDadosDTO;
 
@@ -19,28 +20,21 @@ public class UsuarioModel {
     private Long idUsuario;
 
     @Column(name = "nome_usuario")
-    @NotNull(message = "campo nome é obrigatorio")
-    @Size(max = 50)
     private String nomeUsuario;
 
     @Column(name= "login_usuario", unique = true)
-    @NotNull
     private String loginUsuario;
 
     @Column(name= "email_usuario", unique = true)
-    @Email
-    @Size(min = 10)
     private String emailUsuario;
 
     @Column(name = "senha_usuario")
-    @NotNull
     private String senhaUsuario;
 
     @Column(name = "data_nascimento_usuario")
     private LocalDate dataNascimentoUsuario;
 
     @Column(name = "data_criacao_usuario", updatable = false)
-    @NotNull
     private LocalDateTime dataCriancaoUsuario;
 
     @Column(name = "data_atualizacao_usuario")
@@ -66,6 +60,16 @@ public class UsuarioModel {
         this.emailUsuario = persistirUsuarioDTO.getEmailUsuario();
         this.senhaUsuario = persistirUsuarioDTO.getSenhaUsuario();
         this.dataNascimentoUsuario = persistirUsuarioDTO.getDataNascimentoUsuario();
+    }
+
+    public UsuarioModel(AtualizarUsuarioDTO atualizarUsuarioDTO){
+        this.idUsuario = atualizarUsuarioDTO.getIdUsuario();
+        this.nomeUsuario = atualizarUsuarioDTO.getNomeUsuario();
+        this.loginUsuario = atualizarUsuarioDTO.getLoginUsuario();
+        this.emailUsuario = atualizarUsuarioDTO.getEmailUsuario();
+        this.senhaUsuario = atualizarUsuarioDTO.getSenhaUsuario();
+        this.dataNascimentoUsuario = atualizarUsuarioDTO.getDataNascimentoUsuario();
+        this.dataCriancaoUsuario = atualizarUsuarioDTO.getDataCriacaoUsuario();
     }
 
     public Long getIdUsuario() {
