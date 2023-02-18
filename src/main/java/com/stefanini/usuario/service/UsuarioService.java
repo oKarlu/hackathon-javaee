@@ -67,7 +67,7 @@ public class UsuarioService {
         return usuarioDAO.listarPorInicial(letra);
     }
 
-    public List<UsuarioTodosDadosDTO> listarProvedoresDeEmail(){
+    public List<String> listarProvedoresDeEmail(){
         return usuarioDAO.listarProvedoresDeEmail();
     }
 

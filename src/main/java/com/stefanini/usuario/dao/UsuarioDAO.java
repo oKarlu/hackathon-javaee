@@ -7,7 +7,6 @@ import com.stefanini.usuario.model.UsuarioModel;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.Query;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,9 +29,10 @@ public class UsuarioDAO extends GenericDAO<UsuarioModel, Long> {
         return result.stream().map(UsuarioTodosDadosDTO::new).collect(Collectors.toList());
     }
 
-    public List<UsuarioTodosDadosDTO> listarProvedoresDeEmail(){
-        Query query = createNativeQuery("");
-        HashSet<UsuarioModel> result = (HashSet<UsuarioModel>) query.getResultList();
-        return result.stream().map(UsuarioTodosDadosDTO::new).collect(Collectors.toList());
+    public List<String> listarProvedoresDeEmail(){
+        String hql = "SELECT DISTINCT SUBSTRING(email_usuario, LOCATE('@', email_usuario) + 1) AS provedor_email FROM UsuarioModel";
+        Query query = createQuery2(hql);
+        List<String> result = query.getResultList();
+        return result;
     }
 }

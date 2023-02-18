@@ -52,6 +52,7 @@ public class UsuarioTodosDadosDTO {
         this.dataAtualizacaoUsuario = usuarioModel.getDataAtualizacaoUsuario();
     }
 
+
     public Long getIdUsuario() {
         return idUsuario;
     }

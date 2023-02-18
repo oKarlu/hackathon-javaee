@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 import java.util.Objects;
 
 @Path("/usuarios")
@@ -41,6 +42,14 @@ public class UsuarioResource {
     @Path("/listarInicial/{inicial}")
     public Response listarPorInicial(@PathParam("inicial") String inicial) {
         return Response.ok(usuarioService.listarPorInicial(inicial)).build();
+    }
+
+    @GET
+    @Path("/listar-provedores")
+    public Response listarProvedores(){
+        List<String> provedorDeEmail = usuarioService.listarProvedoresDeEmail();
+        return Response.status(Response.Status.OK).entity(provedorDeEmail).build();
+
     }
 
     @POST

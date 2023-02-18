@@ -48,7 +48,11 @@ public class GenericDAO<T, I>  {
     }
 
     public TypedQuery<T> createQuery(String query) {
-        return (TypedQuery<T>) em.createQuery(query, clazz);
+        return em.createQuery(query, clazz);
+    }
+
+    public TypedQuery<String> createQuery2(String query) {
+        return em.createQuery(query, String.class);
     }
 
     public Query createNativeQuery(String query) {
